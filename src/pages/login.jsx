@@ -1,23 +1,31 @@
-import React, { useState } from "react"
-import MainNav from "../components/mainNav"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../redux-reducers/redux-user';
+import { login } from '../redux-reducers/redux-auth';
+import { getUser } from '../redux-reducers/redux-user';
+import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [email, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setUsername] = useState('tony@stark.com');
+  const [password, setPassword] = useState('password123');
+	const navigate = useNavigate()
+
 
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.auth.loading);
   const error = useSelector((state) => state.auth.error);
-
+	const token = useSelector((state) => state.auth.token);
+	
   const handleLogin = () => {
-    dispatch(login({ email, password }));
+		dispatch(login({ email, password }));
   };
+
+	useEffect(()=>{
+		if(token !== null){
+			dispatch(getUser({token}));
+			navigate('profil/')
+		}
+	},[token, navigate, dispatch])
   return (
-		<>
-		<MainNav />
-    <main className="main bg-dark">
       <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon"></i>
         <h1>Sign In</h1>
@@ -54,11 +62,6 @@ function Login() {
 					{error && <p>{error}</p>}
         </form>
       </section>
-    </main>
-    <footer className="footer">
-      <p className="footer-text">Copyright 2020 Argent Bank</p>
-    </footer>
-	</>
 	)
 }
 

@@ -13,10 +13,16 @@ body {
   min-height: 100vh;
 }
 
+h1{
+	padding: 20px;
+}
+
 .main {
   flex: 1;
 }
-
+.d-flex{
+  display: flex;
+}
 .bg-dark {
   background-color: #12002b;
 }
@@ -42,9 +48,31 @@ body {
   padding: 5px 20px;
 }
 
+.editProfil input{
+	width: 200px;
+	padding: 5px;
+  font-size: 1.2rem;
+	margin: 5px;
+}
+.editProfil .btnGroup{
+	display: flex;
+	justify-content: center;
+}
+.editProfil .btnGroup button{
+	width: 200px;
+	height: 50px;
+	margin: 5px;
+}
+
 .main-nav a {
   font-weight: bold;
   color: #2c3e50;
+	display: flex;
+	align-items: center;
+	flex-wrap: nowrap;
+}
+.main-nav a svg {
+  margin: 0 5px;
 }
 
 .main-nav a.router-link-exact-active {
@@ -134,19 +162,19 @@ body {
   }
 }
 
-.feature-icon {
+.card-img {
   width: 100px;
   border: 10px solid #00bc77;
   border-radius: 50%;
   padding: 1rem;
 }
 
-.feature-item {
+.card {
   flex: 1;
   padding: 2.5rem;
 }
 
-.feature-item-title {
+.card-title {
   color: #222;
   font-size: 1.25rem;
   font-weight: bold;
@@ -185,7 +213,7 @@ body {
 .input-remember label {
   margin-left: 0.25rem;
 }
-
+.input
 .input-wrapper {
   display: flex;
   flex-direction: column;
